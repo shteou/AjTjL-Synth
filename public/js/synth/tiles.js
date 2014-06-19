@@ -1,12 +1,12 @@
 define('synth/tiles',
-  [],
-  function() {
+  ['synth/utility'],
+  function(Utility) {
     var _currentTileType = '';
 
     return {
       onTileTypeClick: function(tileType) {
         _currentTileType = tileType;
-        Utility.highlightActiveButton('tile-type-button', 'tile-type-' + tileType + '-button');
+        Utility.highlightActiveButton('tile-type-button', 'tile-type-' + tileType + '-button'); 
       },
 
       Empty: function() {

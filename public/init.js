@@ -33,21 +33,21 @@ require(['synth/grid', 'synth/toons', 'synth/tiles', 'synth/notes'],
       // var instruments = ["Piano", "Guitar", "Drum", "Saxaphone"];
 
       // instruments.forEach(function(i) {
-      //   $('instrument-' + i + '-button').on('click', onInstrumentClick.bind(this, n));
+      //   $('#instrument-' + i + '-button').on('click', onInstrumentClick.bind(this, n));
       // });
 
       /* Initialise handlers for direction modifiers */
       var tileTypes = ["up", "down", "left", "right", "erase", "wait"];
 
       tileTypes.forEach(function(t) {
-        $('tile-type-' + t + '-button').on('click', Tiles.onTileTypeClick.bind(this, t));
+        $('#tile-type-' + t + '-button').on('click', Tiles.onTileTypeClick.bind(this, t));
       });
 
       // /* Initialise handlers for file operations */
       // var fileOperations = ["New", "Save", "Open", "Clear"];
 
       // fileOperations.forEach(function(f) {
-      //   $('file-' + f + '-button').on('click', onFileClick.bind(this, f));
+      //   $('#file-' + f + '-button').on('click', onFileClick.bind(this, f));
       // });
     }
 });
