@@ -13,6 +13,62 @@
 
 }
 
+#note-A-button {
+	background-color: #000066;
+}
+
+#note-As-button {
+	background-color: #000099;
+}
+
+#note-B-button {
+	background-color: #0000cc;
+}
+
+#note-Bs-button {
+	background-color: #0000ff;
+}
+
+#note-C-button {
+	background-color: #006600;
+}
+
+#note-Cs-button {
+	background-color: #009900;
+}
+
+#note-D-button {
+	background-color: #00cc00;
+}
+
+#note-Ds-button {
+	background-color: #00ff00;
+}
+
+#note-E-button {
+	background-color: #0000ff;
+}
+
+#note-Es-button {
+	background-color: #0000ff;
+}
+
+#note-F-button {
+	background-color: #660000;
+}
+
+#note-Fs-button {
+	background-color: #990000;
+}
+
+#note-G-button {
+	background-color: #cc0000;
+}
+
+#note-Gs-button {
+	background-color: #ff0000;
+}
+
 #notes-container {
   display: block;
 }
