@@ -1,3 +1,8 @@
+#canvas {
+	border: 1px solid black;
+	float: left;
+}
+
 .button {
   min-height: 10px;
   min-width: 18px;
@@ -6,11 +11,22 @@
 }
 
 .button-highlighted {
-	border: 2px solid black;
+	border: 3px solid #eee;
+}
+
+#canvas-and-notes-container {
+	overflow: hidden;
+}
+
+#notes-container {
+	overflow: hidden;
+	padding-left: 10px;
+	padding-top: 10px;
 }
 
 .note-button {
-
+	display: block;
+	width: 40px;
 }
 
 #note-A-button {
@@ -71,4 +87,18 @@
 
 #notes-container {
   display: block;
+}
+
+
+
+
+/* Utility */
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
 }
