@@ -2,10 +2,18 @@ define('synth/utility',
   [],
   function() {
     return {
-      highlightActiveButton: function(buttonClass, buttonId) {
-        $('.' + buttonClass).removeClass('button-highlighted');
+      clearActiveButton: function(buttonId) {
+      	$('#' + buttonId).removeClass('button-active');
+      },
 
-      	$('#' + buttonId).addClass('button-highlighted');
+      isActiveButton: function(buttonId) {
+      	return $('#' + buttonId).hasClass('button-active');
+      },
+
+      highlightActiveButton: function(buttonClass, buttonId) {
+        $('.' + buttonClass).removeClass('button-active');
+
+      	$('#' + buttonId).addClass('button-active');
       }
     }
 })

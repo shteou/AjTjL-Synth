@@ -10,7 +10,7 @@
   outline: none;
 }
 
-.button-highlighted {
+.button-active {
 	border: 3px solid #eee;
 }
 
