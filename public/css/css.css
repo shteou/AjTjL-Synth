@@ -1,6 +1,9 @@
-#canvas {
-	border: 1px solid black;
+#goo-container {
 	float: left;
+}
+
+canvas {
+	border: 1px solid black;
 }
 
 .button {

@@ -7,6 +7,14 @@ define('synth/grid',
         _gridWidth = _width / 10,
         _gridHeight = _height / 10;
 
+      function getTile(x, y) {
+        return _grid[x][y];
+      }
+
+      function setTile(x, y, tile) {
+        _grid[x][y] = tile;
+      }
+
     return {
       init: function() {
         for(var i=0; i<_gridHeight; ++i) {
@@ -18,14 +26,6 @@ define('synth/grid',
             });
           }
         }
-      },
-
-      getTile: function(x, y) {
-        return _grid[x][y];
-      },
-
-      setTile: function(x, y, tile) {
-        _grid[x][y] = tile;
       },
 
       getTileByPosition: function(x, y) {

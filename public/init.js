@@ -11,6 +11,8 @@ require(['synth/synth'],
     /* Initialise the grid and other junk */
     Synth.init();
 
+    /* Initialise handlers for pause/play */
+
     /* Initialise handlers for file operations */
     // var fileOperations = ["New", "Save", "Open", "Clear"];
 

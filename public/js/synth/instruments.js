@@ -5,9 +5,23 @@ define('synth/instruments',
   		_instruments = ["piano", "guitar", "drum", "saxaphone"];
 
   	function onInstrumentClick(i) {
-  	  _currentInstrument = i;
-      Utility.highlightActiveButton('instrument-button', 'instrument-' + i + '-button');
+      var buttonId = 'instrument-' + i + '-button';
+
+      // If no tile type is active, it's a regular note
+      if(Utility.isActiveButton(buttonId)) {
+        clearInstrument();
+      } else {
+        _currentInstrument = i;
+        Utility.highlightActiveButton('instrument-button', buttonId);
+      }
   	}
+
+    function clearInstrument() {
+        if(_currentInstrument && _currentInstrument !== '') {
+          Utility.clearActiveButton('instrument-' + _currentInstrument + '-button');
+          _currentInstrument = null;          
+        }
+      }
 
     return {
       init: function() {
@@ -17,6 +31,11 @@ define('synth/instruments',
         });
 
         onInstrumentClick(_instruments[0]);
+      },
+
+      clearInstrument: clearInstrument,
+      getInstrument: function() {
+        return _currentInstrument;
       }
     }
 })
