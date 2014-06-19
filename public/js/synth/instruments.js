@@ -1,4 +1,4 @@
-define('synth/toons',
+define('synth/instruments',
   [],
   function() {
     return {

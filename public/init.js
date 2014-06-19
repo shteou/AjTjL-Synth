@@ -5,8 +5,8 @@ require.config({
   }
 });
 
-require(['synth/grid', 'synth/toons', 'synth/tiles', 'synth/notes'],
-  function(Grid, Toons, Tiles, Notes) {
+require(['synth/grid', 'synth/instruments', 'synth/tiles', 'synth/notes'],
+  function(Grid, Instruments, Tiles, Notes) {
 
     /* Initialise the grid and other junk */
     Grid.init();
