@@ -23,7 +23,7 @@ require(['synth/grid', 'synth/toons', 'synth/tiles', 'synth/notes'],
       }
 
       /* Initialise handlers for notes */
-      var notes = ["A", "As", "B", "Bs", "C", "Cs", "D", "Ds", "E", "Es", "F", "Fs"];
+      var notes = ["A", "As", "B", "Bs", "C", "Cs", "D", "Ds", "E", "Es", "F", "Fs", "G", "Gs"];
 
       notes.forEach(function(n) {
         $('#note-' + n + '-button').on('click', Notes.onNoteClick.bind(this, n));
