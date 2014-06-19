@@ -17,6 +17,21 @@ canvas {
 	border: 3px solid #eee;
 }
 
+#tile-types-container {
+	float: left;
+	padding: 5px;
+}
+
+#instruments-container {
+	overflow: hidden;
+	padding: 5px;
+	padding-left: 50px;
+}
+
+#file-menu-container {
+	padding: 5px;
+}
+
 #canvas-and-notes-container {
 	overflow: hidden;
 }
