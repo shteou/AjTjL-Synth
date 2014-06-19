@@ -1,3 +1,18 @@
+.button {
+  min-height: 10px;
+  min-width: 18px;
+  border: 1px solid black;
+  outline: none;
+}
+
+.button-highlighted {
+	border: 2px solid black;
+}
+
+.note-button {
+
+}
+
 #notes-container {
   display: block;
 }
