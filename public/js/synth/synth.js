@@ -10,15 +10,24 @@ define('synth/synth',
       	Tiles.init();
       	Notes.init();
 
+        var i = 0,
+            lastTime = 0;
+
       	_goo = new Goo({
       	  width: 800,
       	  height: 600,
       	  container: $('#goo-container')[0],
       	  onDraw: function(goo, time) {
-      	  	// Clear the screen
-      	  	goo.ctx.clearRect(0, 0, goo.width, goo.height);
+      	  	// Render the grid
+            if(i % 10 === 0) {
+              // Clear the screen
+              goo.ctx.clearRect(0, 0, goo.width, goo.height);
 
-      	  	// Render the grid 
+              //console.log(time - lastTime, i);
+              lastTime = time;
+              Grid.update(goo, time);               
+            }
+            i++;
 
       	  	// Update + Render the instruments
       	  },

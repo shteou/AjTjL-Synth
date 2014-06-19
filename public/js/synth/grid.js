@@ -36,6 +36,27 @@ define('synth/grid',
       setTileByPosition: function(x, y, tile) {
         // TODO: Fix me, boundary case
         setTile(Math.floor(x / 10), Math.floor(y / 10), tile);
+      },
+
+      update: function(goo, time) {
+        console.log("Waaat");
+
+        for(var x=0; x<_gridWidth/10; ++x) {
+          for(var y=0; y<_gridHeight/10; ++y) {
+            goo.ctx.save();
+            goo.ctx.rect(x*10, y*10, 10, 10);
+            var tile = getTile(x, y);
+
+            if(tile.type !== 'empty') {
+              goo.ctx.fillStyle = "red";
+              goo.ctx.fillRect(x*10, y*10, 10, 10);
+            } else {
+              goo.ctx.strokeStyle = "blue";
+              goo.ctx.stroke();
+            }
+            goo.ctx.restore();
+          }
+        }
       }
     }
 })
