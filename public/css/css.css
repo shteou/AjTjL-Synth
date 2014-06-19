@@ -46,27 +46,27 @@
 }
 
 #note-E-button {
-	background-color: #0000ff;
-}
-
-#note-Es-button {
-	background-color: #0000ff;
-}
-
-#note-F-button {
 	background-color: #660000;
 }
 
-#note-Fs-button {
+#note-Es-button {
 	background-color: #990000;
 }
 
-#note-G-button {
+#note-F-button {
 	background-color: #cc0000;
 }
 
-#note-Gs-button {
+#note-Fs-button {
 	background-color: #ff0000;
+}
+
+#note-G-button {
+	background-color: #cccc00;
+}
+
+#note-Gs-button {
+	background-color: #ccff00;
 }
 
 #notes-container {
