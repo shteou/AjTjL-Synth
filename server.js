@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // Required modules
 var express = require('express');
 var cors = require('cors');
