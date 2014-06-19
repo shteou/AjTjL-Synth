@@ -5,14 +5,16 @@ require.config({
   }
 });
 
-require(['synth/grid', 'synth/toons', 'synth/instruments', 'synth/tiles'],
-  function(Grid, Toons, Instruments, Tiles) {
+require(['synth/grid', 'synth/toons', 'synth/tiles', 'synth/notes'],
+  function(Grid, Toons, Tiles, Notes) {
 
-    /* Initialise the grid, toons, instruments and tiles */
+    /* Initialise the grid and other junk */
+    Grid.init();
+
     async.parallel([
       function(done) {
-        Grid.init(done);
-      }
+        done();
+      },
     ], bindButtons);
 
     function bindButtons(err, results) {
@@ -24,28 +26,28 @@ require(['synth/grid', 'synth/toons', 'synth/instruments', 'synth/tiles'],
       var notes = ["A", "As", "B", "Bs", "C", "Cs", "D", "Ds", "E", "Es", "F", "Fs"];
 
       notes.forEach(function(n) {
-        $('note-' + n + '-button').on('click', onNoteClick.bind(this, n));
+        $('#note-' + n + '-button').on('click', Notes.onNoteClick.bind(this, n));
       });
 
-      /* Initialise handlers for instruments */
-      var instruments = ["Piano", "Guitar", "Drum", "Saxaphone"];
+      // /* Initialise handlers for instruments */
+      // var instruments = ["Piano", "Guitar", "Drum", "Saxaphone"];
 
-      instruments.forEach(function(i) {
-        $('instrument-' + i + '-button').on('click', onInstrumentClick.bind(this, n));
-      });
+      // instruments.forEach(function(i) {
+      //   $('instrument-' + i + '-button').on('click', onInstrumentClick.bind(this, n));
+      // });
 
       /* Initialise handlers for direction modifiers */
-      var tileTypes = ["Up", "Down", "Left", "Right", "Erase", "Wait"];
+      var tileTypes = ["up", "down", "left", "right", "erase", "wait"];
 
       tileTypes.forEach(function(t) {
-        $('tile-type-' + t + '-button').on('click', onTileTypeClick.bind(this, t));
+        $('tile-type-' + t + '-button').on('click', Tiles.onTileTypeClick.bind(this, t));
       });
 
-      /* Initialise handlers for file operations */
-      var fileOperations = ["New", "Save", "Open", "Clear"];
+      // /* Initialise handlers for file operations */
+      // var fileOperations = ["New", "Save", "Open", "Clear"];
 
-      fileOperations.forEach(function(f) {
-        $('file-' + f + '-button').on('click', onFileClick.bind(this, f));
-      });
+      // fileOperations.forEach(function(f) {
+      //   $('file-' + f + '-button').on('click', onFileClick.bind(this, f));
+      // });
     }
 });

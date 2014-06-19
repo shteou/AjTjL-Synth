@@ -1,5 +1,5 @@
 define('synth/grid',
-  ['synth/tile'],
+  ['synth/tiles'],
   function(Tile) {
     var _grid = [],
         _gridLength = 100;
