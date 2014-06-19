@@ -1,0 +1,19 @@
+{
+  "name": "AjTjL-Synth",
+  "version": "0.0.1",
+  "description": "2D matrix synthesizer for kids",
+  "main": "server.js",
+  "dependencies": {
+    "cors": "~2.3.1",
+    "express": "~4.4.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": "",
+  "author": "",
+  "license": "BSD",
+  "gitHead": "de9529d284d0dc37ef840a463f3e7c355592faa3"
+}
