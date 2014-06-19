@@ -102,3 +102,9 @@
 .cf:after {
     clear: both;
 }
+
+/* Fixes a FireFox issue where buttons are still highlighted despite outline:none; */
+button::-moz-focus-inner {
+  border: 0;
+}
+
