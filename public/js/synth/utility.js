@@ -22,6 +22,12 @@ define('synth/utility',
         buffer.height = height;
         renderFunction(buffer.getContext('2d'));
         return buffer;
+      },
+
+      loadImage: function(src) {
+        var image = new Image();
+        image.src = src;
+        return image;
       }
     }
 })

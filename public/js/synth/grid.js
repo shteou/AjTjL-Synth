@@ -7,7 +7,8 @@ define('synth/grid',
         _height = 600,
         _gridWidth = _width / _tileSize,
         _gridHeight = _height / _tileSize,
-        _cachedImage;
+        _cachedImage,
+        _tiles = {};
 
     function getTile(x, y) {
       return _grid[x][y];
@@ -17,12 +18,17 @@ define('synth/grid',
       _grid[x][y] = tile;
 
       var ctx = _cachedImage.getContext('2d')
-      if(tile.type !== 'empty') {
+      if(tile.tileType !== 'empty') {
         ctx.fillStyle = $('#note-' + Notes.getNote() + '-button').css('background-color');
         ctx.fillRect(x*_tileSize, y*_tileSize, _tileSize, _tileSize);
       }
       ctx.rect(x*_tileSize, y*_tileSize, _tileSize, _tileSize);
       ctx.stroke();
+
+      if(["up", "down", "left", "right"].indexOf(tile.tileType) > -1) {
+        var im = _tiles[tile.tileType];
+        ctx.drawImage(im, x*_tileSize, y*_tileSize);
+      }
     }
 
     function render(ctx) {
@@ -43,6 +49,11 @@ define('synth/grid',
 
     return {
       init: function() {
+        _tiles.up = Utility.loadImage("assets/tiles/up.png");
+        _tiles.down = Utility.loadImage("assets/tiles/down.png");
+        _tiles.left = Utility.loadImage("assets/tiles/left.png");
+        _tiles.right = Utility.loadImage("assets/tiles/right.png");
+
         for(var i=0; i<_gridWidth; ++i) {
           _grid.push([]);
           for(var j=0; j<_gridHeight; ++j) {
