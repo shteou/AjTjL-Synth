@@ -1,7 +1,7 @@
 define('synth/synth',
   ['synth/utility', 'synth/grid', 'synth/instruments', 'synth/tiles', 'synth/notes'],
   function(Utility, Grid, Instruments, Tiles, Notes) {
-  	var _goo;
+    var _goo;
 
     return {
       init: function() {
@@ -32,14 +32,14 @@ define('synth/synth',
       	  	// Update + Render the instruments
       	  },
       	  onMouseUp: function(goo) {
-      	  	if(Instruments.getInstrument() && Instruments.getInstrument() !== '') {
-      	  		Instruments.clearInstrument();
-      	  	} else {
-      	  		var note = Notes.getNote(),
-      	  		tileType = Tiles.getTileType(),
-      	  		tile = {
-      	  			note: Notes.getNote(),
-      	  			tileType: Tiles.getTileType()
+      	    if(Instruments.getInstrument() && Instruments.getInstrument() !== '') {
+      	      Instruments.clearInstrument();
+      	    } else {
+      	      var note = Notes.getNote(),
+      	          tileType = Tiles.getTileType(),
+                  tile = {
+      	            note: Notes.getNote(),
+      	            tileType: Tiles.getTileType()
       	  		};
 
 	      	  	Grid.setTileByPosition(goo.mouseX, goo.mouseY, tile);
