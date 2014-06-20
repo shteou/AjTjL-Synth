@@ -14,10 +14,16 @@ define('synth/grid',
 
     function setTile(x, y, tile) {
       _grid[x][y] = tile;
+
       var ctx = _cachedImage.getContext('2d')
-      ctx.rect(x*10, y*10, 10, 10);
-      ctx.fillStyle = "red";
-      ctx.fillRect(x*10, y*10, 10, 10);
+      if(tile.type === 'empty') {
+        ctx.rect(x*10, y*10, 10, 10);
+        ctx.strokeStyle = "blue";
+        ctx.stroke();
+      } else {
+        ctx.fillStyle = "red";
+        ctx.fillRect(x*10, y*10, 10, 10);
+      }
     }
 
     function render(ctx) {
@@ -25,14 +31,8 @@ define('synth/grid',
         for(var y=0; y<_gridHeight; ++y) {
           ctx.rect(x*10, y*10, 10, 10);
           var tile = getTile(x, y);
-
-          if(tile.type !== 'empty') {
-            ctx.fillStyle = "red";
-            ctx.fillRect(x*10, y*10, 10, 10);
-          } else {
-            ctx.strokeStyle = "blue";
-            ctx.stroke();
-          }
+          ctx.strokeStyle = "blue";
+          ctx.stroke();
         }
       }
     }
