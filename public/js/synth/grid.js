@@ -49,6 +49,7 @@ define('synth/grid',
             });
           }
         }
+        // TODO: Render image as rows, callback when done
         _cachedImage = Utility.renderToCanvas(800, 600, render);
       },
 
