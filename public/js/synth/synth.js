@@ -18,12 +18,15 @@ define('synth/synth',
       	  	// Render the grid
             goo.ctx.clearRect(0, 0, goo.width, goo.height);
             Grid.update(goo, time);
+            Instruments.render(goo, time);
 
       	  	// Update + Render the instruments
       	  },
       	  onMouseUp: function(goo) {
-      	    if(Instruments.getInstrument() && Instruments.getInstrument() !== '') {
-      	      Instruments.clearInstrument();
+      	    if(Instruments.getCurrentInstrument() && Instruments.getCurrentInstrument() !== '') {
+              Instruments.setInstrumentLocation(Math.floor(goo.mouseX / Grid.getTileSize()),
+                Math.floor(goo.mouseY / Grid.getTileSize()));
+              Instruments.clearCurrentInstrument();
       	    } else {
       	      var note = Notes.getNote(),
       	          tileType = Tiles.getTileType(),

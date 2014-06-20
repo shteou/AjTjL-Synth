@@ -2,21 +2,31 @@ define('synth/instruments',
   ['synth/utility'],
   function(Utility) {
     var _currentInstrument,
-    _instruments = ["piano", "guitar", "drum", "saxaphone"];
+        _instruments;
+
+    function createInstrument(name) {
+      var image = new Image();
+      image.src = "assets/instruments/" + name + ".png";
+      return {
+        x: -1,
+        y: -1,
+        image: image
+      };
+    }
 
     function onInstrumentClick(i) {
       var buttonId = 'instrument-' + i + '-button';
 
       // If no tile type is active, it's a regular note
       if(Utility.isActiveButton(buttonId)) {
-        clearInstrument();
+        clearCurrentInstrument();
       } else {
         _currentInstrument = i;
         Utility.highlightActiveButton('instrument-button', buttonId);
       }
     }
 
-    function clearInstrument() {
+    function clearCurrentInstrument() {
         if(_currentInstrument && _currentInstrument !== '') {
           Utility.clearActiveButton('instrument-' + _currentInstrument + '-button');
           _currentInstrument = null;          
@@ -25,15 +35,37 @@ define('synth/instruments',
 
     return {
       init: function() {
-      	/* Initialise handlers for instruments */
-        _instruments.forEach(function(i) {
-          $('#instrument-' + i + '-button').on('click', onInstrumentClick.bind(this, i));
-        });
+        _instruments = {
+          piano: createInstrument("piano"),
+          // guitar: createInstrument("guitar"),
+          drum: createInstrument("drum")
+          // saxaphone: createInstrument("saxaphone")
+        };
+      	
+        /* Initialise handlers for instruments */
+        for(var k in _instruments) {
+          $('#instrument-' + k + '-button').on('click', onInstrumentClick.bind(this, k));
+        };
       },
 
-      clearInstrument: clearInstrument,
-      getInstrument: function() {
+      clearCurrentInstrument: clearCurrentInstrument,
+
+      getCurrentInstrument: function() {
         return _currentInstrument;
+      },
+
+      setInstrumentLocation: function(x, y) {
+        _instruments[_currentInstrument].x = x;
+        _instruments[_currentInstrument].y = y;
+      },
+
+      render: function(goo, time) {
+        for(var k in _instruments) {
+          var i = _instruments[k];
+          if(i.x !== -1) {
+            goo.ctx.drawImage(i.image, i.x * 12, i.y * 12);              
+          }
+        }
       }
     }
 })
