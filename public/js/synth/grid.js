@@ -1,14 +1,12 @@
 define('synth/grid',
-  ['synth/tiles', 'synth/utility'],
-  function(Tile, Utility) {
+  ['synth/tiles', 'synth/utility', 'synth/notes'],
+  function(Tile, Utility, Notes) {
     var _grid = [],
         _tileSize = 12,
         _width = 840,
         _height = 600,
         _gridWidth = _width / _tileSize,
         _gridHeight = _height / _tileSize,
-
-
         _cachedImage;
 
     function getTile(x, y) {
@@ -19,14 +17,12 @@ define('synth/grid',
       _grid[x][y] = tile;
 
       var ctx = _cachedImage.getContext('2d')
-      if(tile.type === 'empty') {
-        ctx.rect(x*_tileSize, y*_tileSize, _tileSize, _tileSize);
-        ctx.strokeStyle = "blue";
-        ctx.stroke();
-      } else {
-        ctx.fillStyle = "red";
+      if(tile.type !== 'empty') {
+        ctx.fillStyle = $('#note-' + Notes.getNote() + '-button').css('background-color');
         ctx.fillRect(x*_tileSize, y*_tileSize, _tileSize, _tileSize);
       }
+      ctx.rect(x*_tileSize, y*_tileSize, _tileSize, _tileSize);
+      ctx.stroke();
     }
 
     function render(ctx) {
