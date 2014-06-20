@@ -20,15 +20,17 @@ canvas {
 #tile-types-container {
 	float: left;
 	padding: 5px;
+	padding-left: 20px;;
 }
 
 #instruments-container {
-	overflow: hidden;
+	float: left;
 	padding: 5px;
-	padding-left: 50px;
+	padding-left: 20px;
 }
 
 #file-menu-container {
+	float: left;
 	padding: 5px;
 }
 
