@@ -2,10 +2,13 @@ define('synth/grid',
   ['synth/tiles', 'synth/utility'],
   function(Tile, Utility) {
     var _grid = [],
-        _width = 800,
+        _tileSize = 12,
+        _width = 840,
         _height = 600,
-        _gridWidth = _width / 10,
-        _gridHeight = _height / 10,
+        _gridWidth = _width / _tileSize,
+        _gridHeight = _height / _tileSize,
+
+
         _cachedImage;
 
     function getTile(x, y) {
@@ -17,23 +20,28 @@ define('synth/grid',
 
       var ctx = _cachedImage.getContext('2d')
       if(tile.type === 'empty') {
-        ctx.rect(x*10, y*10, 10, 10);
+        ctx.rect(x*_tileSize, y*_tileSize, _tileSize, _tileSize);
         ctx.strokeStyle = "blue";
         ctx.stroke();
       } else {
         ctx.fillStyle = "red";
-        ctx.fillRect(x*10, y*10, 10, 10);
+        ctx.fillRect(x*_tileSize, y*_tileSize, _tileSize, _tileSize);
       }
     }
 
     function render(ctx) {
       for(var x=0; x<_gridWidth; ++x) {
-        for(var y=0; y<_gridHeight; ++y) {
-          ctx.rect(x*10, y*10, 10, 10);
-          var tile = getTile(x, y);
-          ctx.strokeStyle = "blue";
-          ctx.stroke();
-        }
+        ctx.beginPath();
+        ctx.moveTo(x*_tileSize, 0);
+        ctx.lineTo(x*_tileSize, _height);
+        ctx.stroke();
+      }
+
+      for(var y=0; y<_gridWidth; ++y) {
+        ctx.beginPath();
+        ctx.moveTo(0, y*_tileSize);
+        ctx.lineTo(_width, y*_tileSize);
+        ctx.stroke();
       }
     }
 
@@ -50,17 +58,17 @@ define('synth/grid',
           }
         }
         // TODO: Render image as rows, callback when done
-        _cachedImage = Utility.renderToCanvas(800, 600, render);
+        _cachedImage = Utility.renderToCanvas(_width, _height, render);
       },
 
       getTileByPosition: function(x, y) {
         // TODO: Fix me, boundary case
-        return getTile(Math.floor(x / 10), Math.floor(y / 10));
+        return getTile(Math.floor(x / _tileSize), Math.floor(y / _tileSize));
       },
 
       setTileByPosition: function(x, y, tile) {
         // TODO: Fix me, boundary case
-        setTile(Math.floor(x / 10), Math.floor(y / 10), tile);
+        setTile(Math.floor(x / _tileSize), Math.floor(y / _tileSize), tile);
       },
 
       update: function(goo, time) {
