@@ -47,7 +47,6 @@ define('synth/grid',
 
     return {
       init: function() {
-        debugger;
         for(var i=0; i<_gridWidth; ++i) {
           _grid.push([]);
           for(var j=0; j<_gridHeight; ++j) {
@@ -59,6 +58,10 @@ define('synth/grid',
         }
         // TODO: Render image as rows, callback when done
         _cachedImage = Utility.renderToCanvas(_width, _height, render);
+      },
+
+      getTileSize: function() {
+        return _tileSize;
       },
 
       getTileByPosition: function(x, y) {
