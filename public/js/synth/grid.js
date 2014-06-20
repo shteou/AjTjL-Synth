@@ -1,22 +1,45 @@
 define('synth/grid',
-  ['synth/tiles'],
-  function(Tile) {
+  ['synth/tiles', 'synth/utility'],
+  function(Tile, Utility) {
     var _grid = [],
         _width = 800,
         _height = 600,
         _gridWidth = _width / 10,
-        _gridHeight = _height / 10;
+        _gridHeight = _height / 10,
+        _cachedImage;
 
-      function getTile(x, y) {
-        return _grid[x][y];
-      }
+    function getTile(x, y) {
+      return _grid[x][y];
+    }
 
-      function setTile(x, y, tile) {
-        _grid[x][y] = tile;
+    function setTile(x, y, tile) {
+      _grid[x][y] = tile;
+      var ctx = _cachedImage.getContext('2d')
+      ctx.rect(x*10, y*10, 10, 10);
+      ctx.fillStyle = "red";
+      ctx.fillRect(x*10, y*10, 10, 10);
+    }
+
+    function render(ctx) {
+      for(var x=0; x<_gridWidth; ++x) {
+        for(var y=0; y<_gridHeight; ++y) {
+          ctx.rect(x*10, y*10, 10, 10);
+          var tile = getTile(x, y);
+
+          if(tile.type !== 'empty') {
+            ctx.fillStyle = "red";
+            ctx.fillRect(x*10, y*10, 10, 10);
+          } else {
+            ctx.strokeStyle = "blue";
+            ctx.stroke();
+          }
+        }
       }
+    }
 
     return {
       init: function() {
+        debugger;
         for(var i=0; i<_gridWidth; ++i) {
           _grid.push([]);
           for(var j=0; j<_gridHeight; ++j) {
@@ -26,6 +49,7 @@ define('synth/grid',
             });
           }
         }
+        _cachedImage = Utility.renderToCanvas(800, 600, render);
       },
 
       getTileByPosition: function(x, y) {
@@ -39,24 +63,7 @@ define('synth/grid',
       },
 
       update: function(goo, time) {
-        console.log("Waaat");
-
-        for(var x=0; x<_gridWidth/10; ++x) {
-          for(var y=0; y<_gridHeight/10; ++y) {
-            goo.ctx.save();
-            goo.ctx.rect(x*10, y*10, 10, 10);
-            var tile = getTile(x, y);
-
-            if(tile.type !== 'empty') {
-              goo.ctx.fillStyle = "red";
-              goo.ctx.fillRect(x*10, y*10, 10, 10);
-            } else {
-              goo.ctx.strokeStyle = "blue";
-              goo.ctx.stroke();
-            }
-            goo.ctx.restore();
-          }
-        }
+        goo.ctx.drawImage(_cachedImage, 0, 0);
       }
     }
 })
