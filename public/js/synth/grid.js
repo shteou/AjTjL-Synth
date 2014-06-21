@@ -63,7 +63,6 @@ define('synth/grid',
             });
           }
         }
-        // TODO: Render image as rows, callback when done
         _cachedImage = Utility.renderToCanvas(_width, _height, render);
       },
 
@@ -72,12 +71,10 @@ define('synth/grid',
       },
 
       getTileByPosition: function(x, y) {
-        // TODO: Fix me, boundary case
         return getTile(Math.floor(x / _tileSize), Math.floor(y / _tileSize));
       },
 
       setTileByPosition: function(x, y, tile) {
-        // TODO: Fix me, boundary case
         setTile(Math.floor(x / _tileSize), Math.floor(y / _tileSize), tile);
       },
 
@@ -85,4 +82,4 @@ define('synth/grid',
         goo.ctx.drawImage(_cachedImage, 0, 0);
       }
     }
-})
+});
