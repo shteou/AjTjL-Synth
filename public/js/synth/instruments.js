@@ -10,7 +10,8 @@ define('synth/instruments',
       return {
         x: -1,
         y: -1,
-        image: image
+        image: image,
+        direction: "right"
       };
     }
 
