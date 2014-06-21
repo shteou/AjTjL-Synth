@@ -1,7 +1,12 @@
 define('synth/synth',
   ['synth/utility', 'synth/grid', 'synth/instruments', 'synth/tiles', 'synth/notes'],
   function(Utility, Grid, Instruments, Tiles, Notes) {
-    var _goo;
+    var _goo,
+        _tempo = 60;
+
+    function play() {
+      setInterval(Instruments.advance, (60/_tempo)*1000);
+    }
 
     return {
       init: function() {
@@ -9,6 +14,8 @@ define('synth/synth',
       	Instruments.init();
       	Tiles.init();
       	Notes.init();
+
+        $('#file-play-button').on('click', play);
 
       	_goo = new Goo({
       	  width: 840,
@@ -28,11 +35,9 @@ define('synth/synth',
                 Math.floor(goo.mouseY / Grid.getTileSize()));
               Instruments.clearCurrentInstrument();
       	    } else {
-      	      var note = Notes.getNote(),
-      	          tileType = Tiles.getTileType(),
-                  tile = {
+      	      var tile = {
       	            note: Notes.getNote(),
-      	            tileType: Tiles.getTileType()
+      	            tileType: Tiles.getTileType() === 'erase' ? 'empty' : Tiles.getTileType()
       	  		};
 
 	      	  	Grid.setTileByPosition(goo.mouseX, goo.mouseY, tile);

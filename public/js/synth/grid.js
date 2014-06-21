@@ -18,7 +18,11 @@ define('synth/grid',
       _grid[x][y] = tile;
 
       var ctx = _cachedImage.getContext('2d')
-      if(tile.tileType !== 'empty') {
+
+      if(tile.tileType === 'empty') {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(x*_tileSize, y*_tileSize, _tileSize, _tileSize);
+      } else {
         ctx.fillStyle = $('#note-' + Notes.getNote() + '-button').css('background-color');
         ctx.fillRect(x*_tileSize, y*_tileSize, _tileSize, _tileSize);
       }

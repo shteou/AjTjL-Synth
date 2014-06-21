@@ -49,6 +49,28 @@ define('synth/instruments',
         };
       },
 
+      advance: function() {
+        for(var k in _instruments) {
+          var instrument = _instruments[k],
+              d = instrument.direction,
+              up = 0,
+              right = 0;
+
+          if(d === "up") {
+            up = 1;
+          } else if (d === 'down') {
+            up = -1;
+          } else if (d === 'right') {
+            right = 1;
+          } else {
+            right = -1;
+          }
+
+          instrument.x += right;
+          instrument.y += up;
+        }
+      },
+
       clearCurrentInstrument: clearCurrentInstrument,
 
       getCurrentInstrument: function() {
