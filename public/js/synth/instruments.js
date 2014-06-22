@@ -11,11 +11,13 @@ define('synth/instruments',
 
       Notes.getNotes().forEach(function(n) {
         if(["Ab", "A", "Bb", "B"].indexOf(n) > -1) {
-          sounds.push(AudioFX('assets/midi-js-soundfonts/' + name + '/' + n + '4.mp3')); 
+          sounds.push(AudioFX('assets/midi-js-soundfonts/' + name + '/' + n + '4', {formats: ['mp3'], pool: 4}));
         } else {
-          sounds.push(AudioFX('assets/midi-js-soundfonts/' + name + '/' + n + '5.mp3')); 
+          sounds.push(AudioFX('assets/midi-js-soundfonts/' + name + '/' + n + '5', {formats: ['mp3'], pool: 4}));
         }
-        sounds[sounds.length-1].audio.volume = 0.5;
+        sounds[sounds.length-1].audio.forEach(function(a) {
+          a.volume = 0.5;
+        });
       });
 
       return {
@@ -73,9 +75,9 @@ define('synth/instruments',
           }
 
           if(d === "up") {
-            up = 1;
-          } else if (d === 'down') {
             up = -1;
+          } else if (d === 'down') {
+            up = 1;
           } else if (d === 'right') {
             right = 1;
           } else {
@@ -88,8 +90,6 @@ define('synth/instruments',
           var tile = Grid.getTile(instrument.x, instrument.y);
           if(tile.note && tile.note !== '' && tile.tileType !== 'empty') {
             var soundIndex = Notes.getNotes().indexOf(tile.note);
-            instrument.sounds[soundIndex].play();
-            instrument.sounds[soundIndex].stop();
             instrument.sounds[soundIndex].play();
           }
 
