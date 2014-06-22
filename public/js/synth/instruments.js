@@ -15,7 +15,8 @@ define('synth/instruments',
         } else {
           sounds.push(AudioFX('assets/midi-js-soundfonts/' + name + '/' + n + '5.mp3')); 
         }
-      })
+        sounds[sounds.length-1].audio.volume = 0.5;
+      });
 
       return {
         x: -1,
@@ -85,7 +86,7 @@ define('synth/instruments',
           instrument.y += up;
 
           var tile = Grid.getTile(instrument.x, instrument.y);
-          if(tile.note && tile.note !== '') {
+          if(tile.note && tile.note !== '' && tile.tileType !== 'empty') {
             var soundIndex = Notes.getNotes().indexOf(tile.note);
             instrument.sounds[soundIndex].play();
             instrument.sounds[soundIndex].stop();
