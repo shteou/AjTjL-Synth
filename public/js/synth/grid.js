@@ -74,6 +74,8 @@ define('synth/grid',
         return _tileSize;
       },
 
+      getTile: getTile,
+
       getTileByPosition: function(x, y) {
         return getTile(Math.floor(x / _tileSize), Math.floor(y / _tileSize));
       },

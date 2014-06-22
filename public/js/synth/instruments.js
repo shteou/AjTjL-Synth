@@ -1,17 +1,28 @@
 define('synth/instruments',
-  ['synth/utility'],
-  function(Utility) {
+  ['synth/utility', 'synth/notes', 'synth/grid'],
+  function(Utility, Notes, Grid) {
     var _currentInstrument,
         _instruments;
 
     function createInstrument(name) {
       var image = new Image();
       image.src = "assets/instruments/" + name + ".png";
+      var sounds = [];
+
+      Notes.getNotes().forEach(function(n) {
+        if(["Ab", "A", "Bb", "B"].indexOf(n) > -1) {
+          sounds.push(AudioFX('assets/midi-js-soundfonts/' + name + '/' + n + '4.mp3')); 
+        } else {
+          sounds.push(AudioFX('assets/midi-js-soundfonts/' + name + '/' + n + '5.mp3')); 
+        }
+      })
+
       return {
         x: -1,
         y: -1,
         image: image,
-        direction: "right"
+        direction: "right",
+        sounds: sounds
       };
     }
 
@@ -56,6 +67,10 @@ define('synth/instruments',
               up = 0,
               right = 0;
 
+          if(instrument.x === -1) {
+            continue;
+          }
+
           if(d === "up") {
             up = 1;
           } else if (d === 'down') {
@@ -68,6 +83,19 @@ define('synth/instruments',
 
           instrument.x += right;
           instrument.y += up;
+
+          var tile = Grid.getTile(instrument.x, instrument.y);
+          if(tile.note && tile.note !== '') {
+            var soundIndex = Notes.getNotes().indexOf(tile.note);
+            instrument.sounds[soundIndex].play();
+            instrument.sounds[soundIndex].stop();
+            instrument.sounds[soundIndex].play();
+          }
+
+          // Update directions
+          if(["up", "down", "left", "right"].indexOf(tile.tileType) > -1) {
+            instrument.direction = tile.tileType;
+          }
         }
       },
 

@@ -38,11 +38,11 @@ define('synth/synth',
       	      var tile = {
       	            note: Notes.getNote(),
       	            tileType: Tiles.getTileType() === 'erase' ? 'empty' : Tiles.getTileType()
-      	  		};
+      	      };
 
-	      	  	Grid.setTileByPosition(goo.mouseX, goo.mouseY, tile);
-      	  	}
-      	  }
+	      Grid.setTileByPosition(goo.mouseX, goo.mouseY, tile);
+      	    }
+          }
       	});
       }
     }
