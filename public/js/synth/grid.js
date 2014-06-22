@@ -2,7 +2,7 @@ define('synth/grid',
   ['synth/tiles', 'synth/utility', 'synth/notes'],
   function(Tile, Utility, Notes) {
     var _grid = [],
-        _tileSize = 12,
+        _tileSize = 24,
         _width = 840,
         _height = 600,
         _gridWidth = _width / _tileSize,
