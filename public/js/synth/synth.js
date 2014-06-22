@@ -2,16 +2,29 @@ define('synth/synth',
   ['synth/utility', 'synth/grid', 'synth/instruments', 'synth/tiles', 'synth/notes'],
   function(Utility, Grid, Instruments, Tiles, Notes) {
     var _goo,
-        _tempo = 120;
+        _tempo = 120,
+        _playing = false,
+        _playTimer;
 
     function play() {
-      setInterval(Instruments.advance, (60/_tempo)*1000);
+      if(!_playing) {
+        _playTimer = setInterval(Instruments.advance, (60/_tempo)*1000);
+      }
+    }
+
+    function stop() {
+      clearInterval(_playTimer);
+      _playTimer = null;
+      Instruments.resetInstruments();
     }
 
     function onMouse(goo) {
       if(Instruments.getCurrentInstrument() && Instruments.getCurrentInstrument() !== '') {
-        Instruments.setInstrumentLocation(Math.floor(goo.mouseX / Grid.getTileSize()),
-          Math.floor(goo.mouseY / Grid.getTileSize()));
+        var x = Math.floor(goo.mouseX / Grid.getTileSize()),
+            y = Math.floor(goo.mouseY / Grid.getTileSize());
+
+        Instruments.setInstrumentLocation(x, y);
+        Instruments.setInstrumentStartLocation(x, y);
         Instruments.clearCurrentInstrument();
      } else {
       var tile = {
@@ -32,6 +45,7 @@ define('synth/synth',
       	Notes.init();
 
         $('#file-play-button').on('click', play);
+        $('#file-stop-button').on('click', stop);
 
       	_goo = new Goo({
       	  width: 840,

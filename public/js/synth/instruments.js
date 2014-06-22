@@ -23,6 +23,8 @@ define('synth/instruments',
       return {
         x: -1,
         y: -1,
+        startX: -1,
+        startY: -1,
         image: image,
         direction: "right",
         sounds: sounds
@@ -102,6 +104,15 @@ define('synth/instruments',
 
       clearCurrentInstrument: clearCurrentInstrument,
 
+      resetInstruments: function() {
+        for(var k in _instruments) {
+          var i = _instruments[k];
+          i.x = i.startX;
+          i.y = i.startY;
+          i.direction = "right";
+        }
+      },
+
       getCurrentInstrument: function() {
         return _currentInstrument;
       },
@@ -109,6 +120,11 @@ define('synth/instruments',
       setInstrumentLocation: function(x, y) {
         _instruments[_currentInstrument].x = x;
         _instruments[_currentInstrument].y = y;
+      },
+
+      setInstrumentStartLocation: function(x, y) {
+        _instruments[_currentInstrument].startX = x;
+        _instruments[_currentInstrument].startY = y;
       },
 
       render: function(goo, time) {
