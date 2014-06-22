@@ -2,7 +2,7 @@ define('synth/notes',
   ['synth/utility'],
   function(Utility) {
   	var _currentNote,
-        _notes = ["A", "As", "B", "Bs", "C", "Cs", "D", "Ds", "E", "Es", "F", "Fs", "G", "Gs"];
+        _notes = ["Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G"];
 
     function onNoteClick(note) {
       _currentNote = note;
@@ -21,6 +21,9 @@ define('synth/notes',
 
       getNote: function() {
       	return _currentNote;
+      },
+      getNotes: function() {
+        return _notes;
       }
     }
 })

@@ -49,19 +49,19 @@ canvas {
 	width: 40px;
 }
 
-#note-A-button {
+#note-Ab-button {
 	background-color: #000066;
 }
 
-#note-As-button {
+#note-A-button {
 	background-color: #000099;
 }
 
-#note-B-button {
+#note-Bb-button {
 	background-color: #0000cc;
 }
 
-#note-Bs-button {
+#note-B-button {
 	background-color: #0000ff;
 }
 
@@ -69,23 +69,19 @@ canvas {
 	background-color: #006600;
 }
 
-#note-Cs-button {
-	background-color: #009900;
-}
-
-#note-D-button {
+#note-Db-button {
 	background-color: #00cc00;
 }
 
-#note-Ds-button {
+#note-D-button {
 	background-color: #00ff00;
 }
 
-#note-E-button {
+#note-Eb-button {
 	background-color: #660000;
 }
 
-#note-Es-button {
+#note-E-button {
 	background-color: #990000;
 }
 
@@ -93,15 +89,11 @@ canvas {
 	background-color: #cc0000;
 }
 
-#note-Fs-button {
-	background-color: #ff0000;
-}
-
-#note-G-button {
+#note-Gb-button {
 	background-color: #cccc00;
 }
 
-#note-Gs-button {
+#note-G-button {
 	background-color: #ccff00;
 }
 
