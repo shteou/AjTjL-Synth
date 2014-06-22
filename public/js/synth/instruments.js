@@ -112,10 +112,12 @@ define('synth/instruments',
       },
 
       render: function(goo, time) {
+        var tileSize = Grid.getTileSize();
+
         for(var k in _instruments) {
           var i = _instruments[k];
           if(i.x !== -1) {
-            goo.ctx.drawImage(i.image, i.x * 12, i.y * 12);              
+            goo.ctx.drawImage(i.image, i.x * tileSize, i.y * tileSize);
           }
         }
       }
