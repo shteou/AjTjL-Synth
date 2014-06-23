@@ -86,6 +86,10 @@ define('synth/grid',
 
       update: function(goo, time) {
         goo.ctx.drawImage(_cachedImage, 0, 0);
+      },
+
+      serialize: function() {
+        return _grid;
       }
     }
 });

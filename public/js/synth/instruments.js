@@ -136,6 +136,21 @@ define('synth/instruments',
             goo.ctx.drawImage(i.image, i.x * tileSize, i.y * tileSize);
           }
         }
+      },
+
+      serialize: function() {
+        var stripped = {};
+        for(var k in _instruments) {
+          var full = _instruments[k];
+
+          stripped[k] = {};
+          stripped[k].x = full.x;
+          stripped[k].y = full.y;
+          stripped[k].startX = full.startX;
+          stripped[k].startY = full.startY;
+          stripped[k].direction = full.direction;
+        }
+        return stripped;
       }
     }
 })

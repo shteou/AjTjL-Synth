@@ -18,6 +18,31 @@ define('synth/synth',
       Instruments.resetInstruments();
     }
 
+    function save() {
+      stop();
+
+      var serialized = {
+        instruments: Instruments.serialize(),
+        grid: Grid.serialize(),
+        id: $('#file-input-id').val()
+      };
+
+      $.ajax({
+        type: "POST",
+        url: '/save',
+        data: JSON.stringify(serialized),
+        contentType: 'application/json',
+        success: function() {
+          $('body').toggleClass("dialogIsOpen");
+          $('#modal-content').text('You have successfully saved your masterpiece!');
+        },
+        error: function() {
+          $('body').toggleClass("dialogIsOpen");
+          $('#modal-content').text('There was an error! :(');
+        }
+      });
+    }
+
     function onMouse(goo) {
       if(Instruments.getCurrentInstrument() && Instruments.getCurrentInstrument() !== '') {
         var x = Math.floor(goo.mouseX / Grid.getTileSize()),
@@ -46,6 +71,11 @@ define('synth/synth',
 
         $('#file-play-button').on('click', play);
         $('#file-stop-button').on('click', stop);
+        $('#file-save-button').on('click', save);
+
+        $('#modal-ok-button').on('click', function() {
+          $('body').toggleClass('dialogIsOpen');
+        });
 
       	_goo = new Goo({
       	  width: 840,
