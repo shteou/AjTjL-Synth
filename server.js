@@ -15,14 +15,17 @@ app.use(bodyParser.json());
 app.use(express.static(process.cwd() + '/public'));
 
 app.post('/save', function(req, res) {
-  console.log(req.body);
-  fs.writeFile('save/' + req.body.id, JSON.stringify(req.body), function(err) {
-    if(err) {
-      res.send(500, "Error " + err);
-    } else {
-      res.send("Success");
-    }
-  });
+  if(/^[a-zA-Z0-9_-]+$/.test(req.body.id)) {
+    fs.writeFile('save/' + req.body.id, JSON.stringify(req.body), function(err) {
+      if(err) {
+        res.send(500, "Error " + err);
+      } else {
+        res.send("Success");
+      }
+    });
+  } else {
+    res.send(401, "Error, bad ID");
+  }
 });
 
 // Create a HTTP server on port 3000
