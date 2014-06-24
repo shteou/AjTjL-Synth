@@ -11,9 +11,9 @@ define('synth/instruments',
 
       Notes.getNotes().forEach(function(n) {
         if(["Ab", "A", "Bb", "B"].indexOf(n) > -1) {
-          sounds.push(AudioFX('assets/midi-js-soundfonts/' + name + '/' + n + '4', {formats: ['mp3'], pool: 4}));
+          sounds.push(AudioFX('assets/midi-js-soundfonts/' + name + '/' + n + '4', {formats: ['mp3'], pool: 5}));
         } else {
-          sounds.push(AudioFX('assets/midi-js-soundfonts/' + name + '/' + n + '5', {formats: ['mp3'], pool: 4}));
+          sounds.push(AudioFX('assets/midi-js-soundfonts/' + name + '/' + n + '5', {formats: ['mp3'], pool: 5}));
         }
         sounds[sounds.length-1].audio.forEach(function(a) {
           a.volume = 0.5;
